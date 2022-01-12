@@ -7,5 +7,475 @@ git add *
 git add -A
 git rm --cached file1 or git rm --cached *  : It will remove the files or folders from the caching/staging area to the working area
 git rm --cached * -f : In case files are not moving back to working area from staging area we have to use the force option
+git commit : It will commit all the files from staging area to the local repository
+git commit -m "updated version for git commands"
+git log : will show you the commit log for the commited files in the local repository
+git diff : It will show the difference between the current file and the latest commited file
+git diff --staged : It will show the difference between the staging area and the current version of the commit
+git show : will show the difference between the latest commit and the current file
+git config --global user.name "Rohit Nagade"
+git config --global user.email "rohitnagade21@gmail.com"
+git reset [commit] - This command will undo all the commits after the specified commit and preserves the changes locally
+git reset --hard [commit] - This command discards all history and goes bac to the specified commit
+git config --list : list of all configuration parameters
+git ls-files : it will list down all the files which are in the local repository
+git ls-tree --full-tree --name-only -r HEAD
+git log --pretty=oneline
+git log --pretty=full
+git log --pretty=medium
+git log --pretty=short
+git log --pretty=fuller
+git log --pretty=email
 
-git commit
+Git Branching
+Branches in git are nothing but pointers to a specific commit
+
+There are 2 types of branches
+1. Local branch - It is just another path or your working tree. 
+2. Remote tracking branches - They have special purposes for linking your work from the local repository to the work on central repository, The automatically detect which remote branches to get changes from, who you use the command git pull
+
+git branch - it will display the list of all branches
+git branch <branchname> - It will create the branchname
+git checkout branchname - It will change the head pointer to test branch
+git merge <branchname> - It will merge other branch with the master branch
+git branch -d <branchname> - It will delete the branch
+git checkout -b <branchname> - It will create a new branch and checkout the new branch at the same time
+git rebase master - This is also a way of combining the work between different branches
+
+git remote add origin "git code url" - This will link local repository with the remote repository
+
+git remote - It will show the list of remote repositories
+
+git push origin master - it will push all my code from local repository to remote repository
+
+git pull origin master - it will copy all the code from your remote repository to the local repository
+
+git clone "git url" - it will copy the entire repository to the specific folder on your device
+
+
+
+
+
+
+
+
+
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo
+$ git init
+Initialized empty Git repository in D:/CDAC/Software Devlopement/git/demo/.git/
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git init
+Reinitialized existing Git repository in D:/CDAC/Software Devlopement/git/demo/.git/
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        demo.html
+        gitcommands.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git addd *
+git: 'addd' is not a git command. See 'git --help'.
+
+The most similar command is
+        add
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git add *
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   demo.html
+        new file:   gitcommands.txt
+
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git rm --cached demo.html
+rm 'demo.html'
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   gitcommands.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        demo.html
+
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git add demo.html
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   demo.html
+        new file:   gitcommands.txt
+
+
+
+<-----after file updation--------->
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   demo.html
+        new file:   gitcommands.txt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   gitcommands.txt
+
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git add *
+gi
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   demo.html
+        new file:   gitcommands.txt
+
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git commit -m "updated version for git commands"
+Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'rohit@LAPTOP-JO19UL03.(none)')
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git commit
+Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'rohit@LAPTOP-JO19UL03.(none)')
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git commit -m "first version for git commands"
+Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'rohit@LAPTOP-JO19UL03.(none)')
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   demo.html
+        new file:   gitcommands.txt
+
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git commit
+Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'rohit@LAPTOP-JO19UL03.(none)')
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git add *
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git commit
+Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'rohit@LAPTOP-JO19UL03.(none)')
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git log
+fatal: your current branch 'master' does not have any commits yet
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git diff
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git config --global user.name "Rohit Nagade"
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git config --global user.email "rohitnagade21@gmail.com"
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git commit
+[master (root-commit) 0747dd6]      Initial commit
+ 2 files changed, 19 insertions(+)
+ create mode 100644 demo.html
+ create mode 100644 gitcommands.txt
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   gitcommands.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git add *
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   gitcommands.txt
+
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git commit -m "updated gitcommands.txt"
+[master 49c75ce] updated gitcommands.txt
+ 1 file changed, 1 insertion(+)
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git log
+commit 49c75ceb5c4d73d640b10883aa64230ca7c82463 (HEAD -> master)
+Author: Rohit Nagade <rohitnagade21@gmail.com>
+Date:   Wed Jan 12 10:28:11 2022 +0530
+
+    updated gitcommands.txt
+
+commit 0747dd6d5f60472c3fed56277aa7746639e12a9e
+Author: Rohit Nagade <rohitnagade21@gmail.com>
+Date:   Wed Jan 12 10:22:01 2022 +0530
+
+         Initial commit
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git add *
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git commit -m ""second commit"
+>
+> second
+> bash: unexpected EOF while looking for matching `"'
+bash: syntax error: unexpected end of file
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git log
+commit 49c75ceb5c4d73d640b10883aa64230ca7c82463 (HEAD -> master)
+Author: Rohit Nagade <rohitnagade21@gmail.com>
+Date:   Wed Jan 12 10:28:11 2022 +0530
+
+    updated gitcommands.txt
+
+commit 0747dd6d5f60472c3fed56277aa7746639e12a9e
+Author: Rohit Nagade <rohitnagade21@gmail.com>
+Date:   Wed Jan 12 10:22:01 2022 +0530
+
+         Initial commit
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git commit
+On branch master
+nothing to commit, working tree clean
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git log
+commit 49c75ceb5c4d73d640b10883aa64230ca7c82463 (HEAD -> master)
+Author: Rohit Nagade <rohitnagade21@gmail.com>
+Date:   Wed Jan 12 10:28:11 2022 +0530
+
+    updated gitcommands.txt
+
+commit 0747dd6d5f60472c3fed56277aa7746639e12a9e
+Author: Rohit Nagade <rohitnagade21@gmail.com>
+Date:   Wed Jan 12 10:22:01 2022 +0530
+
+         Initial commit
+
+
+1234
+
+
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git diff
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git diff
+diff --git a/gitcommands.txt b/gitcommands.txt
+index 332314d..1b0fb50 100644
+--- a/gitcommands.txt
++++ b/gitcommands.txt
+@@ -382,6 +382,9 @@ Date:   Wed Jan 12 10:22:01 2022 +0530
+          Initial commit
+
+
++1234
++
++
+
+
+
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   gitcommands.txt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   gitcommands.txt
+
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git diff
+diff --git a/gitcommands.txt b/gitcommands.txt
+index 332314d..1b0fb50 100644
+--- a/gitcommands.txt
++++ b/gitcommands.txt
+@@ -382,6 +382,9 @@ Date:   Wed Jan 12 10:22:01 2022 +0530
+          Initial commit
+
+
++1234
++
++
+
+
+
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git log
+commit 49c75ceb5c4d73d640b10883aa64230ca7c82463 (HEAD -> master)
+Author: Rohit Nagade <rohitnagade21@gmail.com>
+Date:   Wed Jan 12 10:28:11 2022 +0530
+
+    updated gitcommands.txt
+
+commit 0747dd6d5f60472c3fed56277aa7746639e12a9e
+Author: Rohit Nagade <rohitnagade21@gmail.com>
+Date:   Wed Jan 12 10:22:01 2022 +0530
+
+         Initial commit
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$ git show
+commit 49c75ceb5c4d73d640b10883aa64230ca7c82463 (HEAD -> master)
+Author: Rohit Nagade <rohitnagade21@gmail.com>
+Date:   Wed Jan 12 10:28:11 2022 +0530
+
+    updated gitcommands.txt
+
+diff --git a/gitcommands.txt b/gitcommands.txt
+index 570feda..f49ed1b 100644
+--- a/gitcommands.txt
++++ b/gitcommands.txt
+@@ -8,3 +8,4 @@ git add -A
+ git rm --cached file1 or git rm --cached *  : It will remove the files or folders from the caching/staging area to the working area
+ git rm --cached * -f : In case files are not moving back to working area from staging area we have to use the force option
+
++git commit
+\ No newline at end of file
+
+rohit@LAPTOP-JO19UL03 MINGW64 /d/CDAC/Software Devlopement/git/demo (master)
+$
+
+
+
+
+
+
+
+
